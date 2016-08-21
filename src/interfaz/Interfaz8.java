@@ -86,6 +86,11 @@ public class Interfaz8 extends javax.swing.JFrame {
         jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, -1, -1));
 
         txtHoras.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 11)); // NOI18N
+        txtHoras.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtHorasKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtHoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 80, -1));
 
         txtDesc.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 11)); // NOI18N
@@ -110,15 +115,19 @@ public class Interfaz8 extends javax.swing.JFrame {
 
     private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
         String res1,res2;
-        int horas, descuento=0, resta=0;
+        double horas, descuento=0, resta=0;
         if (txtHoras.getText().trim().isEmpty() ){
             JOptionPane.showMessageDialog(this,"Digite el numero de horas trabajadas","Error", JOptionPane.ERROR_MESSAGE);
             txtHoras.requestFocusInWindow();
         }else{
-           horas= Integer.parseInt(txtHoras.getText());
+            try {
+           horas= Double.parseDouble(txtHoras.getText());
          descuento=((horas*20000)*5)/100;
          resta=(horas*20000)-descuento;
-         
+            }catch (Exception e){
+               JOptionPane.showMessageDialog(this,"Ingrese numero validos","Erro", JOptionPane.ERROR_MESSAGE);
+            txtHoras.requestFocusInWindow();
+           } 
         }
         res1=String.valueOf(descuento);
         res2=String.valueOf(resta);
@@ -134,6 +143,17 @@ public class Interfaz8 extends javax.swing.JFrame {
        
         txtHoras.requestFocusInWindow();
     }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void txtHorasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHorasKeyPressed
+        char c=evt.getKeyChar();
+             
+         
+          if(!Character.isDigit(evt.getKeyChar()) &&evt.getKeyChar()!='.'){ 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+          }
+    }//GEN-LAST:event_txtHorasKeyPressed
 
     /**
      * @param args the command line arguments
