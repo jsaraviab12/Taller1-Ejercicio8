@@ -78,6 +78,11 @@ public class Interfaz8 extends javax.swing.JFrame {
         cmdBorrar.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 11)); // NOI18N
         cmdBorrar.setForeground(new java.awt.Color(102, 0, 0));
         cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, -1, -1));
 
         txtHoras.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 11)); // NOI18N
@@ -121,6 +126,14 @@ public class Interfaz8 extends javax.swing.JFrame {
         txtTotal.setText(res2);
         
     }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+       txtHoras.setText("");
+        txtDesc.setText("");
+        txtTotal.setText("");
+       
+        txtHoras.requestFocusInWindow();
+    }//GEN-LAST:event_cmdBorrarActionPerformed
 
     /**
      * @param args the command line arguments
